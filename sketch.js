@@ -32,16 +32,19 @@ function draw() {
   if (treble >= 20 && time <= millis()) {
     var tempWave = new Wave(frameCount) //wave object
     waveArray.push(tempWave); //store in the array
-    time = millis() + 50
+    time = millis() + 50 //update time
   }
 
+  //display all the waves
   for (var i = 0; i < waveArray.length; i++) {
     waveArray[i].display();
   }
 
+  //displat the logo
   imageMode(CENTER)
   image(tgLogo,width/2, height/2, tgLogo.width/4, tgLogo.height/4)
 
+  //display the text
   if (tgSound.isPlaying() == false) {
     if (textOpacity < 255) {
       textOpacity = textOpacity + 5;
@@ -58,10 +61,9 @@ function draw() {
   fill(255,255,255,textOpacity)
   text("PLAY",width/2,height/2)
 
-
-
 }
 
+//on mouse clicked start the animation and the song (only if it0s not playing)
 function mouseClicked() {
   if (tgSound.isPlaying() == true) {
     tgSound.stop();
@@ -77,10 +79,12 @@ function mouseClicked() {
   }
 }
 
+//resize the canvas
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
 
+//draw the circle made of random lines with a radius of 200px
 function drawWorld(_x,_y,_nLines) {
   for (var i = 0; i < _nLines; i++) {
     // find a random point on a circle
@@ -100,6 +104,7 @@ function drawWorld(_x,_y,_nLines) {
   }
 }
 
+//wave object
 function Wave(_startFrame) {
   this.radius = _startFrame
 
@@ -107,6 +112,7 @@ function Wave(_startFrame) {
     strokeWeight(1)
     noFill();
     stroke("white")
+    //the radius become bigger with the frameCount
     this.radius =400 + sq(frameCount-_startFrame);
     ellipse(width/2,height/2,this.radius)
   }
