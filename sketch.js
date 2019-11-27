@@ -2,6 +2,7 @@ var tgSound; //contains the song
 var tgLogo; //contains the logo image
 var fft; //contain the fft object
 var waveArray = []; //contain all the WAVE object
+var time = 0; //time used for creating the WAVES
 var textOpacity = 0; //cont the opacity of the text
 
 function preload(){
